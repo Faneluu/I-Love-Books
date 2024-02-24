@@ -1,0 +1,42 @@
+[
+{
+  "name": "1984",
+  "author": "George Orwell",
+  "imageUrl": "https://www.univ.ox.ac.uk/wp-content/uploads/2018/11/1984-300x460.jpg",
+  "description": "Distopie despre cum ar fi aratat lumea daca ar fi castigat totalitarismul.",
+  "price": 35
+}
+,
+{
+  "name": "Minunata lume noua",
+  "author": "Aldous Huxley",
+  "imageUrl": "https://cdn.dc5.ro/img-prod/52599-0-240.jpeg",
+  "description": "Distopie cum ar putea ajunge lumea daca lasam capitalismul sa castige.",
+  "price": 35
+}
+,
+{
+  "name": "Razboi si pace",
+  "author": "Lev Tolstoi",
+  "imageUrl": "https://cdn.dc5.ro/img-prod/801910928-1.jpeg",
+  "description": "Arata lumea rusa in perioada razboaielor napoleoniene.",
+  "price": 100
+}
+,
+{
+  "name": "Mizerabilii",
+  "author": "Victor Hugo",
+  "imageUrl": "https://www.uzinadecarte.ro/wp-content/uploads/2019/11/Mizerabilii.jpg",
+  "description": "Probleme societatii franceze post napoleoniene",
+  "price": 90
+}
+,
+{
+  "name": "Candid sau optimismul",
+  "author": "Voltaire",
+  "imageUrl": "https://www.carti-online.com/images/voltaire-candid-sau-optimismul-347.jpg",
+  "description": "Contrazice filzofia ca traim in cea mai buna lumea din cel mai bun timp",
+  "price": 60
+}
+
+]
