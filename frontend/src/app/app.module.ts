@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle'
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [
@@ -13,12 +13,11 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle'
   imports: [
     CommonModule,
     BrowserModule,
-    MatSlideToggleModule,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   bootstrap: [AppComponent],
-  providers: [
-    provideAnimationsAsync()
-  ]
+  providers: []
 })
 
 export class AppModule { }
