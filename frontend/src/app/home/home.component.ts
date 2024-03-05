@@ -18,9 +18,21 @@ import { Book } from '../books';
 export class HomeComponent {
   bookProductList: Book[] = [];
   bookService: BookService = inject(BookService);
+  filteredProductList: Book[] = [];
 
   constructor() {
     this.bookProductList = this.bookService.getAllBookProducts();
+    this.filteredProductList = this.bookProductList;
+  }
+
+  filterResults(text: string){
+    if (!text){
+      this.filteredProductList = this.bookProductList;
+      return;
+    }
+
+    this.filteredProductList = this.bookProductList.filter( 
+      bookProduct => bookProduct?.name.toLowerCase().includes(text.toLowerCase()));
   }
 
 }

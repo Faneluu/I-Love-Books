@@ -40,4 +40,8 @@ export class BookService {
   getBookProductById(id: number): Book | undefined{
     return this.bookProductList.find(bookProduct => bookProduct.id === id);
   }
+
+  submitApplication(firstName: string, lastName: string, email: string){
+    console.log(`Homes application received: firstName: ${firstName}, lastName: ${lastName}, email: ${email}.`);
+  }
 }
