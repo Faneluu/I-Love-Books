@@ -5,6 +5,8 @@
     </form>
   </section>
   <section class="results">
-    <app-book-location *ngFor="let bookLocation of bookLocationList"
-     [bookLocation]="bookLocation" ></app-book-location>
+    <app-book-product
+     *ngFor="let bookProduct of bookProductList"
+     [bookProduct]="bookProduct" >
+    </app-book-product>
   </section>

@@ -1,0 +1,14 @@
+<article>
+    <img class="listing-photo" [src]="bookProduct?.imageUrl"
+      alt="Exterior photo of {{bookProduct?.name}}"/>
+    <section class="listing-description">
+      <h2 class="listing-heading">{{bookProduct?.name}}</h2>
+      <p class="listing-location">{{bookProduct?.author}}</p>
+    </section>
+    <section class="listing-features">
+      <h2 class="section-heading">{{bookProduct?.description}}</h2>
+      <ul>
+        <li>Price: {{bookProduct?.price}}</li>
+      </ul>
+    </section>
+</article>
