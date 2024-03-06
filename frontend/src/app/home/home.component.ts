@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { BookProductComponent } from '../book-product/book-product.component';
 import { BookService } from '../book.service';
 import { Book } from '../books';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @Component({
@@ -21,8 +22,10 @@ export class HomeComponent {
   filteredProductList: Book[] = [];
 
   constructor() {
-    this.bookProductList = this.bookService.getAllBookProducts();
-    this.filteredProductList = this.bookProductList;
+    this.bookService.getAllBookProducts().then((bookProductList: Book[]) => {
+      this.bookProductList = bookProductList;
+      this.filteredProductList = bookProductList;
+    });
   }
 
   filterResults(text: string){

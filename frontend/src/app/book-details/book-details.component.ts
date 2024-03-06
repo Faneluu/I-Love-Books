@@ -27,8 +27,13 @@ export class BookDetailsComponent {
   });
 
   constructor(){
-    this.bookProductId = Number(this.route.snapshot.params['id']);
-    this.bookProduct = this.bookService.getBookProductById(this.bookProductId);
+    const bookProductId = parseInt(this.route.snapshot.params['id'], 10);
+    
+    this.bookService.getBookProductById(bookProductId).then(
+      bookProduct =>
+      {
+        this.bookProduct = bookProduct;
+    })
   }
 
   submitApplication(){
