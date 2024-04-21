@@ -7,20 +7,29 @@
     </a>
     
     <a class="icons"> 
-      <mat-icon fontIcon="exit_to_app" color="primary" matTooltip="Exit"></mat-icon>
+      <mat-icon fontIcon="exit_to_app" color="primary" matTooltip="Logout"></mat-icon>
     </a>  
     
     <a class="icons">
-      <mat-icon fontIcon="perm_identity" color="primary" matTooltip="Register"></mat-icon>
+      <mat-icon fontIcon="person_add" color="primary" matTooltip="Register"></mat-icon>
+    </a>
+
+    <a class="icons" [routerLink]="['/login']">
+      <mat-icon fontIcon="person" color="primary" matTooltip="Login"></mat-icon>
     </a>
 
     <a class="icons">
       <mat-icon aria-hidden="true" fontIcon="shopping_cart" color="primary" matTooltip="Shop"></mat-icon>
     </a>
 
-    <a class="icons" [routerLink]="['/help']"> 
-      <mat-icon fontIcon="help" color="primary" matTooltip="Help"></mat-icon>
-    </a>  
+    <a class="icons">
+      <mat-icon aria-hidden="true" fontIcon="favorite" color="primary" matTooltip="Favorite"></mat-icon>
+    </a>
+
+    <a class="icons" [routerLink]="['/contactsupport']"> 
+      <mat-icon fontIcon="contact_support" color="primary" matTooltip="Contact Support"></mat-icon>
+    </a>
+
   </div>
 
   <section class="content">
