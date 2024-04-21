@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { HomeComponent } from './home/home.component';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { MaterialModule } from './material/material.module';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +9,6 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     HomeComponent,
     RouterModule,
-    HttpClientModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'

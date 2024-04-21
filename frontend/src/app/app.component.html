@@ -1,9 +1,28 @@
 <main>
-  <a [routerLink]="['/']">
-    <header class="brand-name">
-      <img class="brand-logo" src="/assets/logo.svg" alt="logo" aria-hidden="true">
-    </header>
-  </a>
+  
+  <div class="header-container">
+
+    <a [routerLink]="['/']">
+        <img src="/assets/logo.svg" alt="logo" aria-hidden="true">
+    </a>
+    
+    <a class="icons"> 
+      <mat-icon fontIcon="exit_to_app" color="primary" matTooltip="Exit"></mat-icon>
+    </a>  
+    
+    <a class="icons">
+      <mat-icon fontIcon="perm_identity" color="primary" matTooltip="Register"></mat-icon>
+    </a>
+
+    <a class="icons">
+      <mat-icon aria-hidden="true" fontIcon="shopping_cart" color="primary" matTooltip="Shop"></mat-icon>
+    </a>
+
+    <a class="icons" [routerLink]="['/help']"> 
+      <mat-icon fontIcon="help" color="primary" matTooltip="Help"></mat-icon>
+    </a>  
+  </div>
+
   <section class="content">
     <router-outlet></router-outlet>
   </section>

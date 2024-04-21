@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
+
 export class HomeComponent {
   bookProductList: Book[] = [];
   bookService: BookService = inject(BookService);
