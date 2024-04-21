@@ -34,20 +34,12 @@ export class BookService {
     }
   ];
 
-  url = 'http://localhost:8080/book/all';
-  
-  constructor() {}
-
-  async getAllBookProducts(): Promise<Book[]> {
-    const data = await fetch(this.url);
-    const books = await data.json() ?? [];
-    console.log('Books: ', books);
-    return await data.json() ?? [];
+  getAllBookProducts(): Book[] {
+    return this.bookProductList;
   }
 
-  async getBookProductById(id: number): Promise<Book | undefined>{
-    const data = await fetch(`${this.url}/${id}`);
-    return await data.json() ?? {};
+  getBookProductById(id: number): Book | undefined{
+    return this.bookProductList.find(bookProduct => bookProduct.id === id);
   }
 
   submitApplication(firstName: string, lastName: string, email: string){

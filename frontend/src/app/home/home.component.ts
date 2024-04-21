@@ -23,10 +23,8 @@ export class HomeComponent {
   filteredProductList: Book[] = [];
 
   constructor() {
-    this.bookService.getAllBookProducts().then((bookProductList: Book[]) => {
-      this.bookProductList = bookProductList;
-      this.filteredProductList = bookProductList;
-    });
+    this.bookProductList = this.bookService.getAllBookProducts();
+    this.filteredProductList = this.bookProductList;
   }
 
   filterResults(text: string){

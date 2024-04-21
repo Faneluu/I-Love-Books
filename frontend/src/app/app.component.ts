@@ -9,6 +9,7 @@ import { MaterialModule } from './material/material.module';
   imports: [
     HomeComponent,
     RouterModule,
+    MaterialModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
