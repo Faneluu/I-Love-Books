@@ -25,11 +25,11 @@ export class BookService {
     },
     {
       id: 3, 
-      name: 'Crima si pedeapsa',
+      name: 'Minunata lume noua',
       author: 'Aldous Huxley', 
       imageUrl: 'https://cdn.dc5.ro/img-prod/52599-0-240.jpeg',
       description:  'Minunata lume noua' ,
-      price: 35
+      price: 40
     }
   ];
 

@@ -15,6 +15,7 @@ import { Book } from '../books';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
+
 export class HomeComponent {
   bookProductList: Book[] = [];
   bookService: BookService = inject(BookService);

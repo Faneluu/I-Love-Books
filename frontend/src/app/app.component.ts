@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HomeComponent } from './home/home.component';
 import { RouterModule } from '@angular/router';
+import { MaterialModule } from './material/material.module';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,7 @@ import { RouterModule } from '@angular/router';
   imports: [
     HomeComponent,
     RouterModule,
+    MaterialModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
