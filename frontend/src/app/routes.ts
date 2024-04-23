@@ -3,6 +3,7 @@ import { HomeComponent } from './home/home.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { HelpingComponent } from './helping/helping.component';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 const routerConfig: Routes = [
   {
@@ -24,6 +25,11 @@ const routerConfig: Routes = [
     path: 'login',
     component: LoginComponent,
     title: 'Login'
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
+    title: 'Register'
   }
 ];
 

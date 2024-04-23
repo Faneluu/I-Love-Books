@@ -6,11 +6,13 @@
         <img src="/assets/logo.svg" alt="logo" aria-hidden="true">
     </a>
     
+    <app-welcome-message></app-welcome-message>
+
     <a class="icons"> 
       <mat-icon fontIcon="exit_to_app" color="primary" matTooltip="Logout"></mat-icon>
     </a>  
     
-    <a class="icons">
+    <a class="icons" [routerLink]="['/register']">
       <mat-icon fontIcon="person_add" color="primary" matTooltip="Register"></mat-icon>
     </a>
 

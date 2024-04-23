@@ -19,11 +19,3 @@
     margin-left: auto; /* Align to the center */
     margin-right: auto; /* Align to the center */
 }
-
-.mat-form-field {
-    width: 300; /* Adjust the width as per your requirement */
-}
-
-input {
-    width: 500; /* Adjust the width as per your requirement */
-}

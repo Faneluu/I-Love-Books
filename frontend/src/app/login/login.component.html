@@ -5,14 +5,17 @@
     <form>
         <mat-form-field>
             <mat-label>Username</mat-label>
-            <input matInput>
+            <input matInput required [formControl]="username">
         </mat-form-field><br>
     
         <mat-form-field>
             <mat-label>Password</mat-label>
-            <input matInput [type]="hide ? 'password' : 'text'">
+            <input matInput required [formControl]="password" [type]="hide ? 'password' : 'text'">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
         </mat-form-field><br>
 
-        <button mat-raised-button color="primary">Submit</button>
+        <button mat-raised-button color="primary" (click)="submitForm()">Submit</button>
     </form>
 </div>
