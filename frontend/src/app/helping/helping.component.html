@@ -1,3 +1,26 @@
-<div>
-    <p>Daca ai intrebari nu ezita sa ne contactezi!</p>
+<div class="example-container">
+    <header>DATE CONTACT</header><br>
+    <p class="manager-info">Manager: Stefan Raileanu</p>
+    <p>Email: <a href="mailto:stefan.raileanu04&#64;gmail.com" class="email-link">stefan.raileanu04&#64;gmail.com</a></p>
+    <p>Telefon: 0750483940</p>
+    <p>Trimite-ne un email daca ai nevoie de lamuriri!</p><br>
+
+    <form>
+        <mat-form-field>
+            <mat-label>Enter your email</mat-label>
+            <input matInput 
+                placeholder="pat@example.com" 
+                [formControl]="email"
+                (blur)="updateErrorMessage()" required>
+           
+            <mat-error *ngIf="email.invalid">{{errorMessage}}</mat-error>
+        </mat-form-field><br>
+        
+        <mat-form-field>
+            <mat-label>Textul</mat-label>
+            <textarea matInput [formControl]="text"></textarea>
+        </mat-form-field><br>
+        
+        <button mat-raised-button color="primary" (click)="submitForm()">Submit</button>
+    </form>
 </div>

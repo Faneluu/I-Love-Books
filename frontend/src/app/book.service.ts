@@ -12,7 +12,7 @@ export class BookService {
       id: 1, 
       name: 'Crima si pedeapsa',
       author: 'Fyodor Dostoevsky', 
-      imageUrl: 'https://cloud.firebrandtech.com/api/v2/img/111/9780785841739/XL',
+      imageUrl: 'https://i.thenile.io/r1000/9780486415871.jpg',
       description:  'Povestea unui tanar care se intreaba cine este el cu adevarat' ,
       price: 50
     },

@@ -1,0 +1,21 @@
+<div class="centered-form">
+
+    <header class="fancy-header">Login</header>
+
+    <form>
+        <mat-form-field>
+            <mat-label>Username</mat-label>
+            <input matInput required [formControl]="username">
+        </mat-form-field><br>
+    
+        <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput required [formControl]="password" [type]="hide ? 'password' : 'text'">
+            <button mat-icon-button matSuffix (click)="hide = !hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field><br>
+
+        <button mat-raised-button color="primary" (click)="submitForm()">Submit</button>
+    </form>
+</div>

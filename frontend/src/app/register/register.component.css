@@ -1,0 +1,21 @@
+.centered-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.9);
+    text-align: center;
+}
+
+.fancy-header {
+    font-size: 24px; /* Adjust font size */
+    font-weight: bold; /* Make the text bold */
+    color: #333; /* Change text color */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add shadow effect */
+    padding: 10px 20px; /* Add padding to the header */
+    border-radius: 10px; /* Add rounded corners */
+    background-color: #f0f0f0; /* Change background color */
+    display: inline-block; /* Make the header inline-block to fit content */
+    margin-bottom: 20px; /* Add space below the header */
+    margin-left: auto; /* Align to the center */
+    margin-right: auto; /* Align to the center */
+}

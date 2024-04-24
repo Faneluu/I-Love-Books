@@ -1,28 +1,39 @@
 <main>
-  
-  <div class="header-container">
-
+  <div class="header">
     <a [routerLink]="['/']">
-        <img src="/assets/logo.svg" alt="logo" aria-hidden="true">
+      <img src="/assets/logo.svg" alt="logo" aria-hidden="true">
     </a>
     
-    <a class="icons"> 
-      <mat-icon fontIcon="exit_to_app" color="primary" matTooltip="Exit"></mat-icon>
-    </a>  
+    <span *ngIf="message != ''" class="welcome-message">Welcome, {{message}}!</span>
     
-    <a class="icons">
-      <mat-icon fontIcon="perm_identity" color="primary" matTooltip="Register"></mat-icon>
-    </a>
-
-    <a class="icons">
-      <mat-icon aria-hidden="true" fontIcon="shopping_cart" color="primary" matTooltip="Shop"></mat-icon>
-    </a>
-
-    <a class="icons" [routerLink]="['/help']"> 
-      <mat-icon fontIcon="help" color="primary" matTooltip="Help"></mat-icon>
-    </a>  
+    <div class="icons">
+      
+      <a class="icon" [routerLink]="['/contactsupport']"> 
+        <mat-icon fontIcon="contact_support" color="primary" matTooltip="Contact Support"></mat-icon>
+      </a>
+      
+      <a class="icon">
+        <mat-icon aria-hidden="true" fontIcon="favorite" color="primary" matTooltip="Favorite"></mat-icon>
+      </a>
+      
+      <a class="icon">
+        <mat-icon aria-hidden="true" fontIcon="shopping_cart" color="primary" matTooltip="Shop"></mat-icon>
+      </a>
+      
+      <a class="icon" [routerLink]="['/login']">
+        <mat-icon fontIcon="person" color="primary" matTooltip="Login"></mat-icon>
+      </a>
+      
+      <a class="icon" [routerLink]="['/register']">
+        <mat-icon fontIcon="person_add" color="primary" matTooltip="Register"></mat-icon>
+      </a>
+      
+      <a class="icon" (click)="logout()"> 
+        <mat-icon fontIcon="exit_to_app" color="primary" matTooltip="Logout"></mat-icon>
+      </a>  
+    </div>
   </div>
-
+    
   <section class="content">
     <router-outlet></router-outlet>
   </section>
