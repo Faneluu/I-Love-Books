@@ -1,7 +1,7 @@
 <section class="listing">
   <img class="listing-photo" [src]="bookProduct.imageUrl" alt="Exterior photo of {{bookProduct.name}}">
   <h2 class="listing-heading">{{ bookProduct.name }}</h2>
-  <p class="listing-location">Author: {{ bookProduct.author }}</p>z
+  <p class="listing-location">Author: {{ bookProduct.author }}</p>
   <p class="listing-location">Price: {{ bookProduct.price }}</p>
   <a [routerLink]="['/details', bookProduct.id]">Learn More</a>
 </section>

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MaterialModule } from '../material/material.module';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { merge } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { CustomValidators } from './custom-validators';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-register',
@@ -28,7 +29,7 @@ export class RegisterComponent implements OnInit{
   
   form!: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private authService: AuthService) {
     merge(this.email.statusChanges, this.email.valueChanges).pipe(takeUntilDestroyed()).subscribe(() => this.updateErrorMessage);
 
   }
@@ -67,6 +68,9 @@ export class RegisterComponent implements OnInit{
   }
 
   submitForm() {
+    const usernameValue = this.username.value ?? '';
+    this.authService.usernameSubject.next(usernameValue);
+
     this.email.setValue('');
     this.username.setValue('');
     this.form.reset();
@@ -74,7 +78,5 @@ export class RegisterComponent implements OnInit{
     this.errorEmail = ''; 
     this.hide = true; 
     this.hide1 = true;
-
-    
   }
 }
