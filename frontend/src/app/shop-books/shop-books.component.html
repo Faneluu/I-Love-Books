@@ -1,0 +1,18 @@
+<section class="shop-container">
+    <div class="book-product-container">
+      <div *ngFor="let bookProduct of books" class="product-item">
+        <div class="product-details">
+          <img class="product-image" [src]="bookProduct.book.imageUrl" alt="Exterior photo of {{bookProduct.book.name}}">
+          <div class="product-text">
+            <h2>{{ bookProduct.book.name }}</h2>
+            <p>Author: {{ bookProduct.book.author }}</p>
+            <p>Price: {{ bookProduct.book.price }}</p>
+            <p>Cantity: {{ bookProduct.cantity }}</p>
+            <a [routerLink]="['/details', bookProduct.book.id]">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="proceed-button mat-raised-button" mat-raised-button color="primary">Proceed to Cart</button>
+  </section>
+  

@@ -5,7 +5,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { merge } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { CustomValidators } from './custom-validators';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-register',

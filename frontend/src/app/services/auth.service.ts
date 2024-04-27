@@ -12,8 +12,4 @@ export class AuthService {
     this.usernameSubject = new BehaviorSubject<string>('');
     this.username = this.usernameSubject.asObservable();
   }
-
-  onSubmit(){
-
-  }
 }

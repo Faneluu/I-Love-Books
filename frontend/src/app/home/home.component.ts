@@ -1,9 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BookProductComponent } from '../book-product/book-product.component';
-import { BookService } from '../book.service';
-import { Book } from '../books';
+import { BookService } from '../services/book.service';
+import { Book } from '../interfaces/books';
 import { HttpClientModule } from '@angular/common/http';
+import { MaterialModule } from '../material/material.module';
 
 
 @Component({
@@ -12,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BookProductComponent,
     CommonModule,
+    MaterialModule
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
@@ -19,8 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 export class HomeComponent {
   bookProductList: Book[] = [];
-  bookService: BookService = inject(BookService);
   filteredProductList: Book[] = [];
+  bookService: BookService = inject(BookService);
 
   constructor() {
     this.bookProductList = this.bookService.getAllBookProducts();

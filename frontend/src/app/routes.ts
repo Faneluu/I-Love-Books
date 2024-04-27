@@ -4,6 +4,7 @@ import { BookDetailsComponent } from './book-details/book-details.component';
 import { HelpingComponent } from './helping/helping.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { ShopBooksComponent } from './shop-books/shop-books.component';
 
 const routerConfig: Routes = [
   {
@@ -30,6 +31,11 @@ const routerConfig: Routes = [
     path: 'register',
     component: RegisterComponent,
     title: 'Register'
+  },
+  {
+    path: 'shop',
+    component: ShopBooksComponent,
+    title: 'Shop'
   }
 ];
 

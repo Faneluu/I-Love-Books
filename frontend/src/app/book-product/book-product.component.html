@@ -4,4 +4,6 @@
   <p class="listing-location">Author: {{ bookProduct.author }}</p>
   <p class="listing-location">Price: {{ bookProduct.price }}</p>
   <a [routerLink]="['/details', bookProduct.id]">Learn More</a>
+  <button mat-raised-button color="primary" id="addToFavorite">Add to favorite</button>
+  <button mat-raised-button color="primary" id="buyButton" (click)="addShop()">Buy</button>
 </section>

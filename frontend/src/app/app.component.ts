@@ -1,10 +1,12 @@
-import { Component, Input } from '@angular/core';
+import { Component} from '@angular/core';
 import { HomeComponent } from './home/home.component';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from './material/material.module';
 import { LoginComponent } from './login/login.component';
-import { AuthService } from './auth.service';
+import { AuthService } from './services/auth.service';
 import { CommonModule } from '@angular/common';
+import { ShoppingService } from './services/shopping.service';
+import { BookShop } from './interfaces/booksShop';
 
 @Component({
   selector: 'app-root',
@@ -19,16 +21,22 @@ import { CommonModule } from '@angular/common';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
-  message!: string;
 
-  constructor(private authService: AuthService){
-   this.authService.username.subscribe(
-    msg => this.message = msg
-   );
+export class AppComponent {
+  username!: string;
+  countBooks = 0;
+
+  constructor(private authService: AuthService, private shopService: ShoppingService){
+    this.authService.username.subscribe(
+      user => this.username = user
+    );
+
+    this.shopService.bookObs.subscribe((books: BookShop[]) => {
+      this.countBooks = books?.reduce((total, book) => total + book.cantity, 0);
+    });
   }
 
   logout(){
-    this.message = '';
+    this.username = '';
   }
 }

@@ -1,10 +1,9 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { MaterialModule } from '../material/material.module';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { AppComponent } from '../app.component';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -29,8 +28,6 @@ export class LoginComponent{
 
   submitForm() {
     const usernameValue = this.username.value ?? '';
-    console.log("Send: " + usernameValue);
-    // this.loginMessage.emit(usernameValue);
     this.authService.usernameSubject.next(usernameValue);
 
     this.username.setValue('');

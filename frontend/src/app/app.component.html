@@ -4,7 +4,7 @@
       <img src="/assets/logo.svg" alt="logo" aria-hidden="true">
     </a>
     
-    <span *ngIf="message != ''" class="welcome-message">Welcome, {{message}}!</span>
+    <span *ngIf="username != ''" class="welcome-message">Welcome, {{username}}!</span>
     
     <div class="icons">
       
@@ -16,8 +16,8 @@
         <mat-icon aria-hidden="true" fontIcon="favorite" color="primary" matTooltip="Favorite"></mat-icon>
       </a>
       
-      <a class="icon">
-        <mat-icon aria-hidden="true" fontIcon="shopping_cart" color="primary" matTooltip="Shop"></mat-icon>
+      <a class="icon" [routerLink]="['/shop']">
+        <mat-icon aria-hidden="true" fontIcon="shopping_cart" color="primary" matTooltip="Shop" [matBadge]="countBooks" matBadgeOverlap="large"></mat-icon>
       </a>
       
       <a class="icon" [routerLink]="['/login']">

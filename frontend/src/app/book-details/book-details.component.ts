@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Book } from '../books';
-import { BookService } from '../book.service';
+import { Book } from '../interfaces/books';
+import { BookService } from '../services/book.service';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material/material.module';
