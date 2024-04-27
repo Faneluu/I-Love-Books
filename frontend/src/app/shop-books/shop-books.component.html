@@ -1,6 +1,6 @@
 <section class="shop-container">
     <div class="book-product-container">
-      <div *ngFor="let bookProduct of books" class="product-item">
+      <div *ngFor="let bookProduct of books" class="product-container">
         <div class="product-details">
           <img class="product-image" [src]="bookProduct.book.imageUrl" alt="Exterior photo of {{bookProduct.book.name}}">
           <div class="product-text">
@@ -12,8 +12,8 @@
           </div>
         </div>
         <div class="buttons-container">
-          <button mat-raised-button color="primary" (click)="decreaseCantity(bookProduct)"><mat-icon fontIcon="exposure_neg_1"></mat-icon></button>
-          <button mat-raised-button color="primary" (click)="increaseCantity(bookProduct)"><mat-icon fontIcon="exposure_plus_1"></mat-icon></button>
+          <button mat-raised-button color="primary" (click)="decreaseCantity(bookProduct)" matTooltip="Decrease cantity"><mat-icon fontIcon="exposure_neg_1"></mat-icon></button>
+          <button mat-raised-button color="primary" (click)="increaseCantity(bookProduct)" matTooltip="Increase cantity"><mat-icon fontIcon="exposure_plus_1"></mat-icon></button>
         </div>
       </div>
     </div>
@@ -21,7 +21,7 @@
     <p class="total-container"> Total: {{ total }}</p>
 
     <a [routerLink]="['/shop/billing']">
-      <button mat-raised-button color="primary">Proceed to Cart</button>
+      <button mat-raised-button color="primary" matTooltip="Go to buy books">Proceed to Cart</button>
     </a>
 </section>
   

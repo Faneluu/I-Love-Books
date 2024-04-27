@@ -7,6 +7,7 @@ import { RegisterComponent } from './register/register.component';
 import { ShopBooksComponent } from './shop-books/shop-books.component';
 import { BillingComponent } from './billing/billing.component';
 import { FavoriteComponent } from './favorite/favorite.component';
+import { AdminComponent } from './admin/admin.component';
 
 const routerConfig: Routes = [
   {
@@ -48,6 +49,11 @@ const routerConfig: Routes = [
     path:'favorite',
     component: FavoriteComponent,
     title: 'Favorites'
+  },
+  {
+    path:'admin',
+    component: AdminComponent,
+    title: 'Admin'
   }
 ];
 
