@@ -7,6 +7,7 @@ import { AuthService } from './services/auth.service';
 import { CommonModule } from '@angular/common';
 import { ShoppingService } from './services/shopping.service';
 import { BookShop } from './interfaces/booksShop';
+import { FavoriteService } from './services/favorite.service';
 
 @Component({
   selector: 'app-root',
@@ -25,14 +26,19 @@ import { BookShop } from './interfaces/booksShop';
 export class AppComponent {
   username!: string;
   countBooks = 0;
+  countFavorites = 0;
 
-  constructor(private authService: AuthService, private shopService: ShoppingService){
+  constructor(private authService: AuthService, private shopService: ShoppingService, private favoriteService: FavoriteService){
     this.authService.username.subscribe(
       user => this.username = user
     );
 
     this.shopService.bookObs.subscribe((books: BookShop[]) => {
       this.countBooks = books?.reduce((total, book) => total + book.cantity, 0);
+    });
+
+    this.favoriteService.bookObs.subscribe((books: BookShop[]) => {
+      this.countFavorites = books?.reduce((total, book) => total + book.cantity, 0);
     });
   }
 

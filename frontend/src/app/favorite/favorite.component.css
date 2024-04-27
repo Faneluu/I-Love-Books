@@ -1,0 +1,40 @@
+.shop-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.book-product-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.product-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.product-details {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    margin-right: 20px;
+}
+
+.product-image {
+    width: 150px;
+    height: auto;
+    margin-right: 20px;
+}
+
+.buttons-container {
+    display: flex;
+    align-items: flex-end; /* Align buttons to the right */
+    position: relative; /* Position buttons relative to the product container */
+    bottom: 0; /* Align buttons to the bottom */
+    right: 0; /* Align buttons to the right */
+}
+.buttons-container button {
+    margin-left: 10px;
+}

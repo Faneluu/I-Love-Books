@@ -3,6 +3,7 @@ import { Book } from '../interfaces/books';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from '../material/material.module';
 import { ShoppingService } from '../services/shopping.service';
+import { FavoriteService } from '../services/favorite.service';
 
 @Component({
   selector: 'app-book-product',
@@ -17,9 +18,13 @@ import { ShoppingService } from '../services/shopping.service';
 export class BookProductComponent {
   @Input() bookProduct!: Book;
 
-  constructor(private shopService: ShoppingService){}
+  constructor(private shopService: ShoppingService, private favoriteService: FavoriteService){}
 
   addShop(){
     this.shopService.addShop(this.bookProduct);
+  }
+
+  addFavorite(){
+    this.favoriteService.addFavorite(this.bookProduct);
   }
 }

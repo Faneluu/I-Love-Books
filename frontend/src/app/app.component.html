@@ -12,8 +12,8 @@
         <mat-icon fontIcon="contact_support" color="primary" matTooltip="Contact Support"></mat-icon>
       </a>
       
-      <a class="icon">
-        <mat-icon aria-hidden="true" fontIcon="favorite" color="primary" matTooltip="Favorite"></mat-icon>
+      <a class="icon" [routerLink]="['/favorite']">
+        <mat-icon aria-hidden="true" fontIcon="favorite" color="primary" matTooltip="Favorite" [matBadge]="countFavorites"></mat-icon>
       </a>
       
       <a class="icon" [routerLink]="['/shop']">

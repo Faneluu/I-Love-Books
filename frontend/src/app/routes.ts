@@ -6,12 +6,13 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ShopBooksComponent } from './shop-books/shop-books.component';
 import { BillingComponent } from './billing/billing.component';
+import { FavoriteComponent } from './favorite/favorite.component';
 
 const routerConfig: Routes = [
   {
     path: '',
     component: HomeComponent,
-    title: 'Home page'
+    title: 'I Love Books'
   },
   {
     path: 'details/:id',
@@ -42,6 +43,11 @@ const routerConfig: Routes = [
     path:'shop/billing',
     component: BillingComponent,
     title: 'Billing'
+  },
+  {
+    path:'favorite',
+    component: FavoriteComponent,
+    title: 'Favorites'
   }
 ];
 
