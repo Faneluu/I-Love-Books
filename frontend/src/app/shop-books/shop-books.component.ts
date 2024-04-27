@@ -21,8 +21,12 @@ export class ShopBooksComponent {
   total!: number;
 
   constructor(private shopService: ShoppingService){
-    this.books = shopService.bookSubject.getValue();
-    this.calculateTotal();
+    shopService.bookObs.subscribe(books => {
+      if (books) {
+        this.books = books;
+        this.calculateTotal();
+      }
+    });
   }
 
   calculateTotal(){
@@ -37,7 +41,6 @@ export class ShopBooksComponent {
 
     if (index !== -1){
       this.books[index].cantity--;
-      this.total -= this.books[index].book.price;
 
       if (this.books[index].cantity === 0){
         this.shopService.removeShop(book);
@@ -53,7 +56,6 @@ export class ShopBooksComponent {
 
     if (index !== -1){
       this.books[index].cantity++;
-      this.total += this.books[index].book.price;
       this.shopService.bookSubject.next(this.books);
     }
   }

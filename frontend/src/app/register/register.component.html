@@ -30,7 +30,7 @@
                 required>
             
             <button mat-icon-button matSuffix (click)="hide1 = !hide1">
-                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                <mat-icon>{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
             <mat-error *ngIf="form.get('confirmPassword')?.hasError('not_matching')">Passwords doesn't match</mat-error>
         </mat-form-field><br>

@@ -6,6 +6,7 @@ import { merge } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { CustomValidators } from './custom-validators';
 import { AuthService } from '../services/auth.service';
+import { User } from '../interfaces/user';
 
 @Component({
   selector: 'app-register',
@@ -28,6 +29,7 @@ export class RegisterComponent implements OnInit{
   errorEmail = '';
   
   form!: FormGroup;
+  user: User = {name: '', password: '', email:''};
 
   constructor(private fb: FormBuilder, private authService: AuthService) {
     merge(this.email.statusChanges, this.email.valueChanges).pipe(takeUntilDestroyed()).subscribe(() => this.updateErrorMessage);
@@ -69,7 +71,13 @@ export class RegisterComponent implements OnInit{
 
   submitForm() {
     const usernameValue = this.username.value ?? '';
-    this.authService.usernameSubject.next(usernameValue);
+    const emailValue = this.email.value ?? '';
+    const passwordValue = this.form.get('password')?.value ?? '';
+
+    this.user.name = usernameValue;
+    this.user.email = emailValue;
+    this.user.password = passwordValue;
+    this.authService.userSubject.next(this.user);
 
     this.email.setValue('');
     this.username.setValue('');
