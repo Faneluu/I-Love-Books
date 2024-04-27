@@ -13,6 +13,11 @@
         </div>
       </div>
     </div>
-    <button class="proceed-button mat-raised-button" mat-raised-button color="primary">Proceed to Cart</button>
+
+    <p class="total-container"> Total: {{ total }}</p>
+
+    <a [routerLink]="['/shop/billing']">
+      <button class="proceed-button mat-raised-button" mat-raised-button color="primary">Proceed to Cart</button>
+    </a>
   </section>
   

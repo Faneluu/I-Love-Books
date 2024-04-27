@@ -32,3 +32,16 @@
     margin-top: 20px; /* Adjust spacing between products and button */
   }
   
+  .total-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #fff;
+    padding: 20px; /* Increased padding for a bigger container */
+    border: 2px solid #8400ff; /* Changed border style and color */
+    border-radius: 10px; /* Increased border radius for rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adjusted box shadow for a better look */
+    font-size: 18px; /* Increased font size for better readability */
+    font-weight: bold; /* Added font weight for emphasis */
+    color: #7b00ff; /* Changed text color */
+}

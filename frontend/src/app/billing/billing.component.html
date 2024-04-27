@@ -1,0 +1,66 @@
+<button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+    {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+  </button>
+  <mat-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Fill out your name</ng-template>
+        <mat-form-field>
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" label="Fill out your address">
+      <form [formGroup]="secondFormGroup">
+        <mat-form-field>
+          <mat-label>Address</mat-label>
+          <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+                 required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="thirdFormGroup" label="Card requirements">
+        <form [formGroup]="thirdFormGroup">
+            <mat-form-field>
+              <mat-label>Card</mat-label>
+              <input matInput formControlName="thirdCtrl" placeholder="**** **** **** ****" required>
+            </mat-form-field><br>
+            <mat-form-field>
+                <mat-label>Expiration</mat-label>
+                <input matInput formControlName="thirdCtrl1" placeholder="10/26" required>
+            </mat-form-field><br>
+            <mat-form-field>
+                <mat-label>CVC</mat-label>
+                <input matInput formControlName="thirdCtrl2" placeholder="***" required>
+            </mat-form-field><br>
+            <mat-form-field>
+                <mat-label>Owner</mat-label>
+                <input matInput formControlName="thirdCtrl3" placeholder="Raileanu Stefan" required>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>You are now done.</p>
+      <mat-spinner></mat-spinner>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+
+  <p class="total-container"> Total: {{ total }}</p>
+  

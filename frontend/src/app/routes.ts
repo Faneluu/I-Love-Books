@@ -5,6 +5,7 @@ import { HelpingComponent } from './helping/helping.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ShopBooksComponent } from './shop-books/shop-books.component';
+import { BillingComponent } from './billing/billing.component';
 
 const routerConfig: Routes = [
   {
@@ -36,6 +37,11 @@ const routerConfig: Routes = [
     path: 'shop',
     component: ShopBooksComponent,
     title: 'Shop'
+  },
+  {
+    path:'shop/billing',
+    component: BillingComponent,
+    title: 'Billing'
   }
 ];
 

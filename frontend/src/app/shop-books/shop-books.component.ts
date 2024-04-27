@@ -18,10 +18,18 @@ import { RouterModule } from '@angular/router';
 })
 export class ShopBooksComponent {
   books!: BookShop[];
+  total!: number;
 
   constructor(private shopService: ShoppingService){
     this.books = shopService.bookSubject.getValue();
+    this.calculateTotal();
   }
 
+  calculateTotal(){
+    this.total = 0;
+    for (const item of this.books){
+      this.total += item.book.price * item.cantity;
+    }
+  }
 
 }
