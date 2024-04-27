@@ -32,4 +32,29 @@ export class ShopBooksComponent {
     }
   }
 
+  decreaseCantity(book: BookShop){
+    const index = this.books.findIndex(index => index.book.id === book.book.id);
+
+    if (index !== -1){
+      this.books[index].cantity--;
+      this.total -= this.books[index].book.price;
+
+      if (this.books[index].cantity === 0){
+        this.shopService.removeShop(book);
+      }
+      else{
+        this.shopService.bookSubject.next(this.books);
+      }
+    }
+  }
+
+  increaseCantity(book: BookShop){
+    const index = this.books.findIndex(index => index.book.id === book.book.id);
+
+    if (index !== -1){
+      this.books[index].cantity++;
+      this.total += this.books[index].book.price;
+      this.shopService.bookSubject.next(this.books);
+    }
+  }
 }
