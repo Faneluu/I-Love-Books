@@ -24,7 +24,7 @@ export class LoginComponent{
   hide = true;
   username = new FormControl('');
   password = new FormControl('');
-  user: User = {name: '', password: '', email:''};
+  user: User = {id:0, name: '', password: '', email:''};
 
   constructor(private authService: AuthService) {}
 
@@ -33,7 +33,7 @@ export class LoginComponent{
     const passwordValue = this.password.value ?? '';
     this.user.name = usernameValue;
     this.user.password = passwordValue;
-    this.authService.userSubject.next(this.user);
+    this.authService.currentUserSubject.next(this.user);
 
     this.username.setValue('');
     this.password.setValue('');

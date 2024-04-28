@@ -29,11 +29,10 @@ export class RegisterComponent implements OnInit{
   errorEmail = '';
   
   form!: FormGroup;
-  user: User = {name: '', password: '', email:''};
+  user: User = {id:0, name: '', password: '', email:''};
 
   constructor(private fb: FormBuilder, private authService: AuthService) {
     merge(this.email.statusChanges, this.email.valueChanges).pipe(takeUntilDestroyed()).subscribe(() => this.updateErrorMessage);
-
   }
 
   ngOnInit() {
@@ -63,7 +62,6 @@ export class RegisterComponent implements OnInit{
   updateErrorMessage(){
     if (this.email.hasError('email')) {
       this.errorEmail = 'Not a valid email';
-      console.log('Error message:', this.errorEmail);
     } else {
       this.errorEmail = '';
     }
@@ -77,7 +75,8 @@ export class RegisterComponent implements OnInit{
     this.user.name = usernameValue;
     this.user.email = emailValue;
     this.user.password = passwordValue;
-    this.authService.userSubject.next(this.user);
+    this.authService.currentUserSubject.next(this.user);
+    this.authService.addUser(this.user);
 
     this.email.setValue('');
     this.username.setValue('');
@@ -86,5 +85,6 @@ export class RegisterComponent implements OnInit{
     this.errorEmail = ''; 
     this.hide = true; 
     this.hide1 = true;
+    this.user = null!;
   }
 }

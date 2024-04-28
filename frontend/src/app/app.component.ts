@@ -31,7 +31,7 @@ export class AppComponent {
   countFavorites = 0;
 
   constructor(private authService: AuthService, private shopService: ShoppingService, private favoriteService: FavoriteService){
-    this.authService.user.subscribe(
+    this.authService.currentUserObs.subscribe(
       user => {
         this.user = user;
         this.username = user ? user.name : '';
