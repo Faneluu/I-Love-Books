@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Book } from '../interfaces/books';
 import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookService {
+
+  bookObs!: Observable<Book[]>;
+  bookSubject!: BehaviorSubject<Book[]>;
 
   bookProductList: Book[] = [
     {
@@ -33,6 +37,32 @@ export class BookService {
       price: 40
     }
   ];
+
+  constructor(){
+    this.bookSubject = new BehaviorSubject<Book[]>(null!);
+    this.bookObs = this.bookSubject.asObservable();
+
+    this.bookSubject.next(this.bookProductList);
+  }
+
+  addBook(book: Book){
+    const currentBooks = this.bookSubject.getValue();
+    const index = currentBooks.findIndex(index => index.name === book.name);
+
+    if (index === -1){
+
+      let smallestAvailableId = 1;
+      const idSet = new Set(this.bookProductList.map(existingBook => existingBook.id));
+      while (idSet.has(smallestAvailableId)) {
+        smallestAvailableId++;
+      }
+
+      book.id = smallestAvailableId;
+
+      currentBooks.push(book);
+      this.bookSubject.next(currentBooks);
+    }
+  }
 
   getAllBookProducts(): Book[] {
     return this.bookProductList;

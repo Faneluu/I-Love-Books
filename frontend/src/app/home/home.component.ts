@@ -22,10 +22,12 @@ import { MaterialModule } from '../material/material.module';
 export class HomeComponent {
   bookProductList: Book[] = [];
   filteredProductList: Book[] = [];
-  bookService: BookService = inject(BookService);
 
-  constructor() {
-    this.bookProductList = this.bookService.getAllBookProducts();
+  constructor(private bookService: BookService) {
+    this.bookService.bookObs.subscribe(
+      books => this.bookProductList = books
+    );
+    
     this.filteredProductList = this.bookProductList;
   }
 

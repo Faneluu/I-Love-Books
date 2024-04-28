@@ -31,4 +31,13 @@ export class ShoppingService {
     }
     this.bookSubject.next([...currentBooks]);
   }
+
+  removeShop(book: BookShop){
+    const currentBooks = this.bookSubject.getValue();
+    const index = currentBooks.findIndex(index => index.book.id === book.book.id);
+    if (index !== -1){
+      currentBooks.splice(index, 1);
+      this.bookSubject.next(currentBooks);
+    }
+  }
 }

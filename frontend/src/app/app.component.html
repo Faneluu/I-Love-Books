@@ -4,10 +4,14 @@
       <img src="/assets/logo.svg" alt="logo" aria-hidden="true">
     </a>
     
-    <span *ngIf="username != ''" class="welcome-message">Welcome, {{username}}!</span>
+    <span *ngIf="username !== ''" class="welcome-message">Welcome, {{username}}!</span>
     
     <div class="icons">
       
+      <a *ngIf="username === 'admin'" class="icon" [routerLink]="['/admin']">
+        <mat-icon fontIcon="warning" color="primary" matTooltip="Admin panel"></mat-icon>
+      </a>
+
       <a class="icon" [routerLink]="['/contactsupport']"> 
         <mat-icon fontIcon="contact_support" color="primary" matTooltip="Contact Support"></mat-icon>
       </a>

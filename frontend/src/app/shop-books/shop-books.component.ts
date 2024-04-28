@@ -21,8 +21,12 @@ export class ShopBooksComponent {
   total!: number;
 
   constructor(private shopService: ShoppingService){
-    this.books = shopService.bookSubject.getValue();
-    this.calculateTotal();
+    shopService.bookObs.subscribe(books => {
+      if (books) {
+        this.books = books;
+        this.calculateTotal();
+      }
+    });
   }
 
   calculateTotal(){
@@ -32,4 +36,27 @@ export class ShopBooksComponent {
     }
   }
 
+  decreaseCantity(book: BookShop){
+    const index = this.books.findIndex(index => index.book.id === book.book.id);
+
+    if (index !== -1){
+      this.books[index].cantity--;
+
+      if (this.books[index].cantity === 0){
+        this.shopService.removeShop(book);
+      }
+      else{
+        this.shopService.bookSubject.next(this.books);
+      }
+    }
+  }
+
+  increaseCantity(book: BookShop){
+    const index = this.books.findIndex(index => index.book.id === book.book.id);
+
+    if (index !== -1){
+      this.books[index].cantity++;
+      this.shopService.bookSubject.next(this.books);
+    }
+  }
 }

@@ -1,0 +1,196 @@
+<div class="centered-form">
+    <header class="fancy-header">ADMIN PANEL</header><br>
+    
+    <div *ngIf="!opBooks && !opUsers">
+        <button mat-raised-button color="primary" (click)="opBooks=true;">Modify books</button><br><br>
+        <button mat-raised-button color="primary" (click)="opUsers=true;">Modify users</button><br><br>
+    </div>
+    
+    <div *ngIf="opBooks">
+        <div *ngIf="!(view || add || edit || remove)">
+            <button mat-raised-button color="primary" (click)="view=true;">View books</button><br><br>
+            <button mat-raised-button color="primary" (click)="add=true;">Add book</button><br><br>
+            <button mat-raised-button color="primary" (click)="edit=true;">Edit book</button><br><br>
+            <button mat-raised-button color="primary" (click)="remove=true;">Remove book</button><br><br>
+        </div>
+        
+        <div *ngIf="view">
+            <table>
+                <th>ID</th>
+                <th>Name</th> 
+                <th>Author</th>
+                    <tr *ngFor="let currentBook of booksProducts">
+                        <td>{{currentBook.id}}</td>
+                        <td>{{currentBook.name}}</td>
+                        <td>{{currentBook.author}}</td>
+                    </tr>
+            </table><br>
+        </div>
+        <div *ngIf="add">
+            <form>
+                <mat-form-field>
+                    <mat-label>Name</mat-label>
+                    <input matInput required [formControl]="name">
+                </mat-form-field><br>
+            
+                <mat-form-field>
+                    <mat-label>Author</mat-label>
+                    <input matInput required [formControl]="author">
+                </mat-form-field><br>
+
+                <mat-form-field>
+                    <mat-label>Image URL</mat-label>
+                    <input matInput required [formControl]="imageUrl" type="text" paste="onPaste($event)">
+                </mat-form-field><br>
+
+                <mat-form-field>
+                    <mat-label>Description</mat-label>
+                    <textarea matInput [formControl]="description" required></textarea>
+                </mat-form-field><br>
+
+                <mat-form-field floatLabel="always">
+                    <mat-label>Amount</mat-label>
+                    <input matInput type="number" class="example-right-align" placeholder="0" [formControl]="price" required>
+                    <span matTextPrefix>$&nbsp;</span>
+                    <span matTextSuffix>.00</span>
+                  </mat-form-field><br>
+        
+                <button mat-raised-button color="primary" (click)="addBook()">Submit</button><br><br>
+            </form>
+        </div>
+        <div *ngIf="edit">
+            <form>
+                <mat-form-field>
+                    <mat-label>ID book to edit</mat-label>
+                    <input matInput required [formControl]="id">
+                </mat-form-field><br>
+
+                <mat-form-field>
+                    <mat-label>Name</mat-label>
+                    <input matInput [formControl]="name">
+                </mat-form-field><br>
+
+                <mat-form-field>
+                    <mat-label>Author</mat-label>
+                    <input matInput [formControl]="author">
+                </mat-form-field><br>
+
+                <mat-form-field>
+                    <mat-label>Image URL</mat-label>
+                    <input matInput [formControl]="imageUrl">
+                </mat-form-field><br>
+
+                <mat-form-field>
+                    <mat-label>Description</mat-label>
+                    <input matInput [formControl]="description">
+                </mat-form-field><br>
+
+                <mat-form-field floatLabel="always">
+                    <mat-label>Amount</mat-label>
+                    <input matInput type="number" class="example-right-align" placeholder="0" [formControl]="price" >
+                    <span matTextPrefix>$&nbsp;</span>
+                    <span matTextSuffix>.00</span>
+                </mat-form-field><br>
+
+                <button mat-raised-button color="primary" (click)="updateBook()">Update</button>
+            </form>
+        </div>
+        <div *ngIf="remove">
+            <form>
+                <mat-form-field>
+                    <mat-label>ID book to remove</mat-label>
+                    <input matInput required [formControl]="id">
+                </mat-form-field><br>
+                <button mat-raised-button color="primary" (click)="removeBook()">Remove</button>
+            </form>
+        </div>
+
+        <button mat-raised-button color="primary" (click)="opBooks=false;add=false;edit=false;remove=false;view=false;">Back</button><br><br>
+    </div>
+
+    <div *ngIf="opUsers">
+        <div *ngIf="!(view || add || edit || remove)">
+            <button mat-raised-button color="primary" (click)="view=true;">View users</button><br><br>
+            <button mat-raised-button color="primary" (click)="add=true;">Add user</button><br><br>
+            <button mat-raised-button color="primary" (click)="edit=true;">Edit user</button><br><br>
+            <button mat-raised-button color="primary" (click)="remove=true;">Remove user</button><br><br>
+        </div>
+        
+        <div *ngIf="view">
+            <table>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th> 
+                <th>Password</th>
+                    <tr *ngFor="let currentUser of users">
+                        <td>{{currentUser.id}}</td>
+                        <td>{{currentUser.name}}</td>
+                        <td>{{currentUser.email}}</td>
+                        <td>{{currentUser.password}}</td>
+                    </tr>
+            </table><br>
+        </div>
+        <div *ngIf="add">
+            <form>
+                <mat-form-field>
+                    <mat-label>Username</mat-label>
+                    <input matInput [formControl]="username" required>
+                </mat-form-field><br>
+        
+                <mat-form-field>
+                    <mat-label>Enter your email</mat-label>
+                    <input matInput placeholder="pat@example.com" [formControl]="email" (blur)="updateErrorMessage()" required>
+                    <mat-error *ngIf="email.invalid">{{errorEmail}}</mat-error>
+                </mat-form-field><br>
+            
+                <mat-form-field>
+                    <mat-label>Password</mat-label> 
+                    <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password" required>
+                    <button mat-icon-button matSuffix (click)="hide = !hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field><br>
+        
+                <button mat-raised-button color="primary" (click)="addUser()">Submit</button><br><br>
+            </form>
+        </div>
+        <div *ngIf="edit">
+            <form>
+                <mat-form-field>
+                    <mat-label>ID user to edit</mat-label>
+                    <input matInput [formControl]="id" required>
+                </mat-form-field><br>
+                <mat-form-field>
+                    <mat-label>Username</mat-label>
+                    <input matInput [formControl]="username">
+                </mat-form-field><br>
+        
+                <mat-form-field>
+                    <mat-label>Enter your email</mat-label>
+                    <input matInput placeholder="pat@example.com" [formControl]="email" (blur)="updateErrorMessage()">
+                    <mat-error *ngIf="email.invalid">{{errorEmail}}</mat-error>
+                </mat-form-field><br>
+            
+                <mat-form-field>
+                    <mat-label>Password</mat-label> 
+                    <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password">
+                    <button mat-icon-button matSuffix (click)="hide = !hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field><br>
+        
+                <button mat-raised-button color="primary" (click)="updateUser()">Submit</button><br><br>
+            </form>
+        </div>
+        <div *ngIf="remove">
+            <form>
+                <mat-form-field>
+                    <mat-label>ID user to remove</mat-label>
+                    <input matInput required [formControl]="id">
+                </mat-form-field><br>
+                <button mat-raised-button color="primary" (click)="removeUser()">Remove</button><br><br>
+            </form>
+        </div>
+        <button mat-raised-button color="primary" (click)="opUsers=false;add=false;edit=false;remove=false;view=false;">Back</button><br><br>
+    </div>
+</div>

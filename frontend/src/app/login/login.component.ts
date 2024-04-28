@@ -4,6 +4,7 @@ import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { User } from '../interfaces/user';
 
 @Component({
   selector: 'app-login',
@@ -23,12 +24,16 @@ export class LoginComponent{
   hide = true;
   username = new FormControl('');
   password = new FormControl('');
+  user: User = {id:0, name: '', password: '', email:''};
 
   constructor(private authService: AuthService) {}
 
   submitForm() {
     const usernameValue = this.username.value ?? '';
-    this.authService.usernameSubject.next(usernameValue);
+    const passwordValue = this.password.value ?? '';
+    this.user.name = usernameValue;
+    this.user.password = passwordValue;
+    this.authService.currentUserSubject.next(this.user);
 
     this.username.setValue('');
     this.password.setValue('');
