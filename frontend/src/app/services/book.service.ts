@@ -36,6 +36,24 @@ export class BookService {
 
       currentBooks.push(book);
       this.bookSubject.next(currentBooks);
+
+      fetch(`${this.url}/add`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(book)
+        })
+        .then(response => {
+            if (response.ok) {
+                console.log('Book added successfully to the database.');
+            } else {
+                console.error('Failed to add book to the database.');
+            }
+        })
+        .catch(error => {
+            console.error('Error occurred while adding book:', error);
+        });
     }
   }    
 
@@ -48,7 +66,6 @@ export class BookService {
     } catch(error){
       console.error('Error fetching books: ', error);
     }
-
   }
 
   async getAllBookProducts(): Promise<Book[]> {

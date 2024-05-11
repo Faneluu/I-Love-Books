@@ -7,8 +7,6 @@ import java.io.Serializable;
 @Entity
 public class Book implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(nullable = false, updatable = false)
     private Long id;
     private String name;
     private String author;
@@ -17,7 +15,8 @@ public class Book implements Serializable {
     private Long price;
 
     public Book() {}
-    public Book(String name, String author, String imageUrl, String description, Long price){
+    public Book(Long id, String name, String author, String imageUrl, String description, Long price){
+        this.id = 0L;
         this.name = name;
         this.author = author;
         this.imageUrl = imageUrl;

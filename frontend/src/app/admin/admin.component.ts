@@ -54,6 +54,8 @@ export class AdminComponent{
   description = new FormControl('');
   price = new FormControl('');
 
+  url = 'http://localhost:8080';
+
   constructor(private bookService: BookService, private usersService: AuthService){
     this.bookService.bookObs.subscribe(
       books => this.booksProducts = books
@@ -181,6 +183,28 @@ export class AdminComponent{
         this.booksProducts[index].price = price;
         this.price.setValue('');
       }
+
+      const updatedBookObj = this.booksProducts[index];
+        this.booksProducts[index] = updatedBookObj;
+
+        // Send a request to the server to update the book
+        fetch(`${this.url}/book/update`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updatedBookObj)
+        })
+        .then(response => {
+            if (response.ok) {
+                console.log('Book updated successfully in the database.');
+            } else {
+                console.error('Failed to update book in the database.');
+            }
+        })
+        .catch(error => {
+            console.error('Error occurred while updating book:', error);
+        });
     }
 
     this.id.setValue('');
@@ -192,6 +216,20 @@ export class AdminComponent{
 
     if (index !== -1){
       this.booksProducts.splice(index, 1);
+
+      fetch(`${this.url}/book/delete/${index}`, {
+        method: 'DELETE',
+      })
+      .then(response => {
+        if (response.ok){
+          console.log('Book deleted succesfully from the database');
+        } else{
+          console.error('Failed to delete book from the database');
+        }
+      })
+      .catch(error =>{
+        console.error("Error occurred while deleting book: ", error);
+      })
     }
 
     this.id.setValue('');

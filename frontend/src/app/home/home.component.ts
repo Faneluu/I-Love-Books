@@ -25,10 +25,11 @@ export class HomeComponent {
 
   constructor(private bookService: BookService) {
     this.bookService.bookObs.subscribe(
-      books => this.bookProductList = books
+      books => {
+        this.bookProductList = books
+        this.filteredProductList = this.bookProductList;
+      }
     );
-    
-    this.filteredProductList = this.bookProductList;
   }
 
   filterResults(text: string){

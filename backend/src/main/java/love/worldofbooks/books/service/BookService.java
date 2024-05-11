@@ -1,5 +1,6 @@
 package love.worldofbooks.books.service;
 
+import jakarta.transaction.Transactional;
 import love.worldofbooks.books.exception.UserNotFoundException;
 import love.worldofbooks.books.model.Book;
 import love.worldofbooks.books.repo.BookRepo;
@@ -20,6 +21,7 @@ public class BookService {
     }
 
     public Book addBook(Book book){
+        System.out.println("Book id to add: " + book.getId());
         return bookRepo.save(book);
     }
 
@@ -35,7 +37,10 @@ public class BookService {
         return bookRepo.findBookById(id)
                 .orElseThrow(() -> new UserNotFoundException("User by id " + id + " was not found"));
     }
+
+    @Transactional
     public void deleteBook(Long id){
+        System.out.println("Id: " + id);
         bookRepo.deleteBookById(id);
     }
 }
