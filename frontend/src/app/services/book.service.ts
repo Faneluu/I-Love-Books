@@ -10,39 +10,14 @@ export class BookService {
 
   bookObs!: Observable<Book[]>;
   bookSubject!: BehaviorSubject<Book[]>;
-
-  bookProductList: Book[] = [
-    {
-      id: 1, 
-      name: 'Crima si pedeapsa',
-      author: 'Fyodor Dostoevsky', 
-      imageUrl: 'https://i.thenile.io/r1000/9780486415871.jpg',
-      description:  'Povestea unui tanar care se intreaba cine este el cu adevarat' ,
-      price: 50
-    },
-    {
-      id: 2, 
-      name: '1984',
-      author: 'George Orwell', 
-      imageUrl: 'https://www.univ.ox.ac.uk/wp-content/uploads/2018/11/1984-300x460.jpg',
-      description:  'Distopie despre cum ar fi aratat lumea daca ar fi castigat totalitarismul' ,
-      price: 35
-    },
-    {
-      id: 3, 
-      name: 'Minunata lume noua',
-      author: 'Aldous Huxley', 
-      imageUrl: 'https://cdn.dc5.ro/img-prod/52599-0-240.jpeg',
-      description:  'Minunata lume noua' ,
-      price: 40
-    }
-  ];
+  bookProductList!: Book[];
+  url = 'http://localhost:8080/book';
 
   constructor(){
     this.bookSubject = new BehaviorSubject<Book[]>(null!);
     this.bookObs = this.bookSubject.asObservable();
 
-    this.bookSubject.next(this.bookProductList);
+    this.initializeBooks();
   }
 
   addBook(book: Book){
@@ -62,14 +37,31 @@ export class BookService {
       currentBooks.push(book);
       this.bookSubject.next(currentBooks);
     }
+  }    
+
+  private async initializeBooks(){
+    try{
+      this.getAllBookProducts().then((books: Book[]) =>{
+        this.bookProductList = books;
+        this.bookSubject.next(this.bookProductList);
+      })
+    } catch(error){
+      console.error('Error fetching books: ', error);
+    }
+
   }
 
-  getAllBookProducts(): Book[] {
-    return this.bookProductList;
+  async getAllBookProducts(): Promise<Book[]> {
+    const data = await fetch(`${this.url}/all`);
+    const books = await data.json() ?? [];
+    console.log('Books: ', books);
+    return await books ?? [];
   }
 
-  getBookProductById(id: number): Book | undefined{
-    return this.bookProductList.find(bookProduct => bookProduct.id === id);
+  async getBookProductById(id: number): Promise<Book | undefined>{
+    const data = await fetch(`${this.url}/find/${id}`);
+    const book = await data.json() ?? [];
+    return await book ?? {};
   }
 
   submitApplication(firstName: string, lastName: string, email: string){

@@ -26,7 +26,11 @@ export class BookDetailsComponent {
  
   constructor(){
     this.bookProductId = Number(this.route.snapshot.params['id']);
-    this.bookProduct = this.bookService.getBookProductById(this.bookProductId);
+    this.bookService.getBookProductById(this.bookProductId).then(
+      bookProduct =>
+      {
+        this.bookProduct = bookProduct;
+    })
   }
 
   submitApplication(){

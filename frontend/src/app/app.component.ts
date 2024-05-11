@@ -9,6 +9,7 @@ import { ShoppingService } from './services/shopping.service';
 import { BookShop } from './interfaces/booksShop';
 import { FavoriteService } from './services/favorite.service';
 import { User } from './interfaces/user';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
