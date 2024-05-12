@@ -1,15 +1,13 @@
-package love.worldofbooks.books.service;
+package love.worldofbooks.books.books.services;
 
 import jakarta.transaction.Transactional;
 import love.worldofbooks.books.exception.UserNotFoundException;
-import love.worldofbooks.books.model.Book;
-import love.worldofbooks.books.repo.BookRepo;
+import love.worldofbooks.books.books.models.Book;
+import love.worldofbooks.books.books.repositories.BookRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.UUID;
 
 @Service
 public class BookService {
@@ -35,7 +33,7 @@ public class BookService {
 
     public Book findBookById(Long id){
         return bookRepo.findBookById(id)
-                .orElseThrow(() -> new UserNotFoundException("User by id " + id + " was not found"));
+                .orElseThrow(() -> new UserNotFoundException("Book by id " + id + " was not found"));
     }
 
     @Transactional

@@ -1,4 +1,4 @@
-package love.worldofbooks.books.model;
+package love.worldofbooks.books.books.models;
 
 import jakarta.persistence.*;
 

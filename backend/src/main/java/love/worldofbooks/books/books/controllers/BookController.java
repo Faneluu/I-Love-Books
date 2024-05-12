@@ -1,8 +1,7 @@
-package love.worldofbooks.books;
+package love.worldofbooks.books.books.controllers;
 
-import love.worldofbooks.books.model.Book;
-import love.worldofbooks.books.service.BookService;
-import org.apache.coyote.Response;
+import love.worldofbooks.books.books.models.Book;
+import love.worldofbooks.books.books.services.BookService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,10 +10,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/book")
-public class BookResource {
+public class BookController {
     private final BookService bookService;
 
-    public BookResource(BookService bookResource){
+    public BookController(BookService bookResource){
         this.bookService = bookResource;
     }
 

@@ -28,13 +28,18 @@ export class BookService {
 
       let smallestAvailableId = 1;
       const idSet = new Set(this.bookProductList.map(existingBook => existingBook.id));
+
       while (idSet.has(smallestAvailableId)) {
         smallestAvailableId++;
       }
 
       book.id = smallestAvailableId;
+      console.log("book to add id: " + book.id);
+      console.log("book to add name: " + book.name);
+      console.log("book to add author: " + book.author);
 
       currentBooks.push(book);
+      currentBooks.sort((a,b) => a.id - b.id);
       this.bookSubject.next(currentBooks);
 
       fetch(`${this.url}/add`, {

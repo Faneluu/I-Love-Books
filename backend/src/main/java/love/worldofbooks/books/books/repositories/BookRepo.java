@@ -1,6 +1,6 @@
-package love.worldofbooks.books.repo;
+package love.worldofbooks.books.books.repositories;
 
-import love.worldofbooks.books.model.Book;
+import love.worldofbooks.books.books.models.Book;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
