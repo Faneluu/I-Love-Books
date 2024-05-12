@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { MaterialModule } from '../material/material.module';
 import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ShoppingService } from '../services/shopping.service';
+import { AuthService } from '../services/auth.service';
+import { CommonModule } from '@angular/common';
+import { User } from '../interfaces/user';
 
 @Component({
   selector: 'app-billing',
@@ -10,6 +13,7 @@ import { ShoppingService } from '../services/shopping.service';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    CommonModule
   ],
   templateUrl: './billing.component.html',
   styleUrl: './billing.component.css'
@@ -28,10 +32,20 @@ export class BillingComponent {
     thirdCtrl3: ['', Validators.required],
   });
   isLinear = false;
+  isLogged = false;
   total!: number;
+  user!: User;
+  username = "User";
 
-  constructor(private shopService: ShoppingService, private _formBuilder: FormBuilder){
+  constructor(private shopService: ShoppingService, private _formBuilder: FormBuilder, private authService: AuthService){
     this.calculateTotal();
+    
+    this.authService.currentUserSubject.subscribe(
+      user => this.user = user
+    )
+    
+    if (this.authService.isLoggedIn())
+      this.isLogged = true;
   }
 
   calculateTotal(){
