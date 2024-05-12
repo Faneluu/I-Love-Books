@@ -10,7 +10,8 @@ export class AuthService {
   usersSubject!: BehaviorSubject<User[]>;
   currentUserObs!: Observable<User>;
   currentUserSubject!: BehaviorSubject<User>;
-  
+  usersList!: User[];
+
 
   url = 'http://localhost:8080/user';
 
@@ -20,6 +21,8 @@ export class AuthService {
 
     this.usersSubject = new BehaviorSubject<User[]>([]);
     this.usersObs = this.usersSubject.asObservable();
+    
+    this.initializeUsers();
   }
 
   addUser(user: User){
@@ -38,6 +41,7 @@ export class AuthService {
 
       user.id = smallestAvailableId;
       users.push(user);
+      users.sort((a, b) => a.id - b.id);
       this.usersSubject.next(users);
 
       fetch(`${this.url}/add`, {
@@ -58,5 +62,23 @@ export class AuthService {
           console.error('Error occurred while adding user:', error);
       });
     }
+  }
+
+  private async initializeUsers(){
+    try{
+      this.getAllUsers().then((users: User[]) =>{
+        this.usersList = users;
+        this.usersSubject.next(this.usersList);
+      })
+    } catch(error){
+      console.error('Error fetching books: ', error);
+    }
+  }
+
+  async getAllUsers(): Promise<User[]> {
+    const data = await fetch(`${this.url}/all`);
+    const books = await data.json() ?? [];
+    console.log('Users: ', books);
+    return await books ?? [];
   }
 }

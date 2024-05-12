@@ -120,6 +120,25 @@ export class AdminComponent{
         this.users[index].password = this.password.value ?? '';
         this.password.setValue('');
       }
+
+      // Send a request to the server to update the book
+      fetch(`${this.url}/user/update`, {
+      method: 'PUT',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.users[index])
+      })
+      .then(response => {
+          if (response.ok) {
+              console.log('User updated successfully in the database.');
+          } else {
+              console.error('Failed to update user in the database.');
+          }
+      })
+      .catch(error => {
+          console.error('Error occurred while updating user:', error);
+      });
     }
 
     this.id.setValue('');
@@ -131,6 +150,20 @@ export class AdminComponent{
 
     if (index !== -1){
       this.users.splice(index, 1);
+
+      fetch(`${this.url}/user/delete/${index}`, {
+        method: 'DELETE',
+      })
+      .then(response => {
+        if (response.ok){
+          console.log('User deleted succesfully from the database');
+        } else{
+          console.error('Failed to delete user from the database');
+        }
+      })
+      .catch(error =>{
+        console.error("Error occurred while deleting user: ", error);
+      })
     }
 
     this.id.setValue('');
@@ -184,27 +217,24 @@ export class AdminComponent{
         this.price.setValue('');
       }
 
-      const updatedBookObj = this.booksProducts[index];
-        this.booksProducts[index] = updatedBookObj;
-
-        // Send a request to the server to update the book
-        fetch(`${this.url}/book/update`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(updatedBookObj)
-        })
-        .then(response => {
-            if (response.ok) {
-                console.log('Book updated successfully in the database.');
-            } else {
-                console.error('Failed to update book in the database.');
-            }
-        })
-        .catch(error => {
-            console.error('Error occurred while updating book:', error);
-        });
+      // Send a request to the server to update the book
+      fetch(`${this.url}/book/update`, {
+          method: 'PUT',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(this.booksProducts[index])
+      })
+      .then(response => {
+          if (response.ok) {
+              console.log('Book updated successfully in the database.');
+          } else {
+              console.error('Failed to update book in the database.');
+          }
+      })
+      .catch(error => {
+          console.error('Error occurred while updating book:', error);
+      });
     }
 
     this.id.setValue('');
