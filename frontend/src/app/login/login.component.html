@@ -16,5 +16,7 @@
         </mat-form-field><br>
 
         <button mat-raised-button color="primary" (click)="submitForm()">Submit</button>
+        <br><br>
+        <mat-error *ngIf = "!isAuthenticated && !firstTime">User or password invalid</mat-error>
     </form>
 </div>

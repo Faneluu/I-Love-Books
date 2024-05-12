@@ -23,6 +23,7 @@ import { User } from '../interfaces/user';
 export class RegisterComponent implements OnInit{
   hide = true;
   hide1 = true;
+  userExists = false;
   
   email = new FormControl('', [Validators.email]);
   username = new FormControl('');
@@ -75,8 +76,12 @@ export class RegisterComponent implements OnInit{
     this.user.name = usernameValue;
     this.user.email = emailValue;
     this.user.password = passwordValue;
-    this.authService.currentUserSubject.next(this.user);
-    this.authService.addUser(this.user);
+    
+    this.userExists = this.authService.addUser(this.user);
+    if (!this.userExists)
+      this.authService.currentUserSubject.next(this.user);
+
+    console.log("userExists: " + this.userExists);
 
     this.email.setValue('');
     this.username.setValue('');

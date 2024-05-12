@@ -51,5 +51,6 @@ export class AppComponent {
   logout(){
     this.username = '';
     this.user = null!;
+    this.authService.clearSession();
   }
 }

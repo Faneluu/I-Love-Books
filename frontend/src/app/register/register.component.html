@@ -30,5 +30,6 @@
         </mat-form-field><br>
 
         <button mat-raised-button color="primary" (click)="submitForm()">Submit</button>
+        <mat-error *ngIf="userExists">User already exists</mat-error>
     </form>
 </div>

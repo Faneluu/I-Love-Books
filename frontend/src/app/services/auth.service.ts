@@ -12,7 +12,6 @@ export class AuthService {
   currentUserSubject!: BehaviorSubject<User>;
   usersList!: User[];
 
-
   url = 'http://localhost:8080/user';
 
   constructor() { 
@@ -25,12 +24,27 @@ export class AuthService {
     this.initializeUsers();
   }
 
+  setSessionToken(token: string): void {
+    localStorage.setItem('user', token);
+  }
+
+  getSessionToken(): string | null {
+    return localStorage.getItem('user');
+  }
+
+  clearSession(): void {
+    localStorage.removeItem('user');
+  }
+
+  isLoggedIn(): boolean {
+    return !!this.getSessionToken();
+  }
+
   addUser(user: User){
     const users = this.usersSubject.getValue();
-    const index = users.findIndex(index => index.id === user.id);
+    const index = users.findIndex(index => index.name === user.name);
 
     console.log("Index addUser: " + index);
-
     if (index === -1){
 
       let smallestAvailableId = 1;
@@ -61,7 +75,11 @@ export class AuthService {
       .catch(error => {
           console.error('Error occurred while adding user:', error);
       });
+
+      return false;
     }
+
+    return true;
   }
 
   private async initializeUsers(){
@@ -69,6 +87,15 @@ export class AuthService {
       this.getAllUsers().then((users: User[]) =>{
         this.usersList = users;
         this.usersSubject.next(this.usersList);
+        console.log("Users initialized propertly")
+
+        if (this.isLoggedIn()){
+          console.log("Este deja user-ul: " + this.getSessionToken());
+          const users = this.usersSubject.getValue();
+          const index = users.findIndex(index => index.name === this.getSessionToken());
+          console.log("user at index: " + index);
+          this.currentUserSubject.next(users[index]);
+        }
       })
     } catch(error){
       console.error('Error fetching books: ', error);

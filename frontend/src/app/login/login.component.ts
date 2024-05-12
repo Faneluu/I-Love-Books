@@ -22,6 +22,9 @@ import { User } from '../interfaces/user';
 
 export class LoginComponent{
   hide = true;
+  isAuthenticated = false;
+  firstTime = true;
+
   username = new FormControl('');
   password = new FormControl('');
   user: User = {id:0, name: '', password: '', email:''};
@@ -31,11 +34,27 @@ export class LoginComponent{
   submitForm() {
     const usernameValue = this.username.value ?? '';
     const passwordValue = this.password.value ?? '';
-    this.user.name = usernameValue;
-    this.user.password = passwordValue;
-    this.authService.currentUserSubject.next(this.user);
+
+    const users = this.authService.usersSubject.getValue();
+    
+    this.isAuthenticated = false;
+
+    for (var i = 0; i < users.length; i++){
+      if (users[i].name === usernameValue && users[i].password === passwordValue){
+        this.user.name = usernameValue;
+        this.user.password = passwordValue;
+        this.authService.currentUserSubject.next(this.user);
+        
+        this.isAuthenticated = true;
+        this.authService.setSessionToken(usernameValue);
+        
+        break;
+      }
+    }
 
     this.username.setValue('');
     this.password.setValue('');
+    
+    this.firstTime = false;
   }
 }
